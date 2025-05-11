@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Using SQLite for local development
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+  // For production with neon.tech, use:
+  // provider = "postgresql"
+  // url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  tasks     Task[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Task {
+  id          String    @id @default(uuid())
+  title       String
+  description String?
+  status      String    @default("pending")
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  userId      String
+  user        User      @relation(fields: [userId], references: [id])
+}
