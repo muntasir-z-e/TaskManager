@@ -189,7 +189,3 @@ For production deployment:
 - Use environment variables for all sensitive information
 - Implement proper logging and monitoring
 - Consider using a CI/CD pipeline for automated deployments
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. 
